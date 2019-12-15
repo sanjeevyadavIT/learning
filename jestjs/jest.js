@@ -43,13 +43,18 @@ function expect(actual) {
           throw new Error(errorMessage);
         }
         for (let i = 0; i < actual.length; i++) {
-          if(actual[i] !== expected[i]) {
+          if (actual[i] !== expected[i]) {
             throw new Error(errorMessage);
           }
         }
         return;
       }
       throw new Error('Only Array equality is checked');
+    },
+    toBeUndefined: (expected) => {
+      if(expected !== undefined) {
+        throw new Error('expected value was not undefined');
+      }
     },
     not: {
       toBe: (expected) => {
@@ -81,7 +86,7 @@ function expect(actual) {
   }
 }
 
-function fn(impl) {
+function fn(impl = () => {}) {
   const mockFunction = (...args) => {
     mockFunction.mock.calls.push(args);
     return impl(...args);
@@ -89,9 +94,17 @@ function fn(impl) {
   mockFunction.mock = {
     calls: [],
   }
+  mockFunction.mockImplementation = newImpl => (impl = newImpl)
   return mockFunction;
+}
+
+function spyOn(object, parameter) {
+  const originalValue =  object[parameter];
+  object[parameter] = fn();
+  object[parameter].mockRestore = () => (object[parameter] = originalValue)
 }
 
 global.test = test;
 global.expect = expect;
 global.fn = fn;
+global.spyOn = spyOn;
