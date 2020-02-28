@@ -3,8 +3,14 @@
     
     <script type='text/javascript'>
 
+        /**
+        * Note: Custom functional component can't conatin
+        *       other custom component as top level parent.
+        */
+
+        // ================== React.js ==================
         const React = {
-            createElement: (type, props) => {
+            createElement: function(type, props){
                 return {
                     type,
                     props
@@ -12,12 +18,25 @@
             }
         }
 
+        // ================== ReactDOM ==================
         const ReactDOM = {
             render: function render(obj, rootElement) {
+
+                obj.props = obj.props || {};
+
+                if(obj.type instanceof Function) {
+                    // Custom Functional Component detected
+                    obj = obj.type(obj.props);
+                }
+
                 const domElement = document.createElement(obj.type);
 
                 if("className" in obj.props) {
                     domElement.className = obj.props.className;
+                }
+
+                if("src" in obj.props) {
+                    domElement.src = obj.props.src;
                 }
 
                 if("children" in obj.props) {
@@ -41,17 +60,44 @@
             }
         };
 
-        const rootElement = document.getElementById('root')
+        /* =============== Custom Functional Component =============
+        */
+        function Name(props) {
+            return React.createElement('h3', {children: props.name});
+        }
 
+        /* =============== Custom Functional Component =============
+        * Note: Custom functional component can't conatin
+        *       other custom component as top level parent.
+        */
+        function Avatar(props) {
+            return React.createElement(
+                'div', // This has to be html element
+                {
+                    ...props,
+                    children: [
+                        React.createElement('img', { src: props.src}),
+                        React.createElement(Name, { name: props.name}),
+                    ]
+                }
+            );
+        }
+
+        /**
+        * ==================== Main App =======================
+        */
         const element = React.createElement('div', {
             className: 'container',
             children: [
                 "Hello World",
-                React.createElement('h1', { className: 'work-it', children: 'I\'m a child'}),
+                React.createElement(Avatar, { src: 'https://via.placeholder.com/150', name: 'Sanjeev Yadav'}),
+                React.createElement('hr', null),
+                React.createElement(Avatar, { src: 'https://via.placeholder.com/150', name: 'Rajeev Yadav'}),
                 "Good Bye world"
             ]
         })
 
-        ReactDOM.render(element, rootElement)
+        // render our app 
+        ReactDOM.render(element, document.getElementById('root'))
     </script>
 </body>
