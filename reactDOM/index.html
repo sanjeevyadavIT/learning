@@ -1,12 +1,10 @@
+<head>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+</head>
 <body>
     <div id='root'></div>
     
     <script type='text/javascript'>
-
-        /**
-        * Note: Custom functional component can't conatin
-        *       other custom component as top level parent.
-        */
 
         // ================== React.js ==================
         const React = {
@@ -27,7 +25,11 @@
                 if(obj.type instanceof Function) {
                     // Custom Functional Component detected
                     obj = obj.type(obj.props);
+                    render(obj, rootElement); // This allows to parse if Custom element has custom element as top level parent 
+                    return;
                 }
+
+                // TODO: Sameway if obj.type is instance of Class, call obj.type.render function
 
                 const domElement = document.createElement(obj.type);
 
@@ -62,22 +64,26 @@
 
         /* =============== Custom Functional Component =============
         */
-        function Name(props) {
-            return React.createElement('h3', {children: props.name});
+        function Card(props) {
+            return React.createElement(
+                'div',
+                {   
+                    className: `card ${props.className || ''}`,
+                    children: props.children
+                }
+            );
         }
 
         /* =============== Custom Functional Component =============
-        * Note: Custom functional component can't conatin
-        *       other custom component as top level parent.
         */
         function Avatar(props) {
             return React.createElement(
-                'div', // This has to be html element
+                Card, // This has to be html element
                 {
                     ...props,
                     children: [
-                        React.createElement('img', { src: props.src}),
-                        React.createElement(Name, { name: props.name}),
+                        React.createElement('img', { className: 'card-img-top', src: props.src }),
+                        React.createElement('h3',  { className: 'card-title', children: props.name }),
                     ]
                 }
             );
@@ -89,11 +95,11 @@
         const element = React.createElement('div', {
             className: 'container',
             children: [
+                React.createElement('div', { className: 'alert alert-primary', children: 'ReactDOM.render method implementation'}),
                 "Hello World",
-                React.createElement(Avatar, { src: 'https://via.placeholder.com/150', name: 'Sanjeev Yadav'}),
+                React.createElement(Avatar, { src: 'https://placekitten.com/g/200/200', name: 'Sanjeev Yadav'}),
                 React.createElement('hr', null),
-                React.createElement(Avatar, { src: 'https://via.placeholder.com/150', name: 'Rajeev Yadav'}),
-                "Good Bye world"
+                React.createElement(Avatar, { src: 'https://placekitten.com/g/200/200', name: 'Rajeev Yadav'}),
             ]
         })
 
