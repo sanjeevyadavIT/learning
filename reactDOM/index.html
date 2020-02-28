@@ -1,0 +1,57 @@
+<body>
+    <div id='root'></div>
+    
+    <script type='text/javascript'>
+
+        const React = {
+            createElement: (type, props) => {
+                return {
+                    type,
+                    props
+                }
+            }
+        }
+
+        const ReactDOM = {
+            render: function render(obj, rootElement) {
+                const domElement = document.createElement(obj.type);
+
+                if("className" in obj.props) {
+                    domElement.className = obj.props.className;
+                }
+
+                if("children" in obj.props) {
+                    const children = obj.props.children;
+                    if (typeof children === 'string' || children instanceof String) {
+                        domElement.textContent = children;
+                    } else {
+                        // array
+                        for(const child of children) {
+                            if(typeof child === 'string' || child instanceof String) {
+                                domElement.appendChild(document.createTextNode(child));
+                            } else {
+                                // Object
+                                render(child, domElement);
+                            }
+                        }
+                    }
+                }
+                
+                rootElement.appendChild(domElement);
+            }
+        };
+
+        const rootElement = document.getElementById('root')
+
+        const element = React.createElement('div', {
+            className: 'container',
+            children: [
+                "Hello World",
+                React.createElement('h1', { className: 'work-it', children: 'I\'m a child'}),
+                "Good Bye world"
+            ]
+        })
+
+        ReactDOM.render(element, rootElement)
+    </script>
+</body>
