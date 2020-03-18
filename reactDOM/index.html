@@ -41,6 +41,10 @@
                     domElement.src = obj.props.src;
                 }
 
+                if("onClick" in obj.props) {
+                    domElement.addEventListener("click", obj.props.onClick);
+                }
+
                 if("children" in obj.props) {
                     const children = obj.props.children;
                     if (typeof children === 'string' || children instanceof String) {
@@ -97,9 +101,8 @@
             children: [
                 React.createElement('div', { className: 'alert alert-primary', children: 'ReactDOM.render method implementation'}),
                 "Hello World",
-                React.createElement(Avatar, { src: 'https://placekitten.com/g/200/200', name: 'Sanjeev Yadav'}),
-                React.createElement('hr', null),
-                React.createElement(Avatar, { src: 'https://placekitten.com/g/200/200', name: 'Rajeev Yadav'}),
+                React.createElement(Avatar, { src: 'https://placekitten.com/g/200/200', name: 'Sanjeev Yadav' }),
+                React.createElement('button', { onClick: () => { console.log('Button pressed!')}, children: 'Click Me'}),
             ]
         })
 
