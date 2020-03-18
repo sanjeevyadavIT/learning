@@ -47,14 +47,15 @@
 
                 if("children" in obj.props) {
                     const children = obj.props.children;
+
                     if (typeof children === 'string' || children instanceof String) {
                         domElement.textContent = children;
-                    } else {
+                    } else if(Array.isArray(children)){
                         // array
                         for(const child of children) {
                             if(typeof child === 'string' || child instanceof String) {
                                 domElement.appendChild(document.createTextNode(child));
-                            } else {
+                            } else if(typeof child === 'object' && child !== null){
                                 // Object
                                 render(child, domElement);
                             }
@@ -101,10 +102,15 @@
             children: [
                 React.createElement('div', { className: 'alert alert-primary', children: 'ReactDOM.render method implementation'}),
                 "Hello World",
+                false,
+                undefined,
+                null,
                 React.createElement(Avatar, { src: 'https://placekitten.com/g/200/200', name: 'Sanjeev Yadav' }),
                 React.createElement('button', { onClick: () => { console.log('Button pressed!')}, children: 'Click Me'}),
             ]
         })
+
+        console.log(element)
 
         // render our app 
         ReactDOM.render(element, document.getElementById('root'))
