@@ -1,10 +1,8 @@
-package com.betatech.diceroller
+package com.betatech.ud9012
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
-import com.betatech.diceroller.databinding.ActivityMainBinding
+import com.betatech.ud9012.databinding.ActivityMainBinding
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {

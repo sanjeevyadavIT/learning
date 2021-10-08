@@ -1,4 +1,4 @@
-package com.betatech.diceroller
+package com.betatech.ud9012
 
 import org.junit.Test
 
