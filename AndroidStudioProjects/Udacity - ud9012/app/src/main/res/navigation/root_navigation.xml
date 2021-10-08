@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_navigation"
+    app:startDestination="@id/miniAppFragment">
+
+    <fragment
+        android:id="@+id/miniAppFragment"
+        android:name="com.betatech.ud9012.MiniAppFragment"
+        android:label="fragment_mini_app"
+        tools:layout="@layout/fragment_mini_app" >
+        <action
+            android:id="@+id/action_miniAppFragment_to_diceRollerFragment"
+            app:destination="@id/diceRollerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/diceRollerFragment"
+        android:name="com.betatech.ud9012.diceroller.DiceRollerFragment"
+        android:label="fragment_dice_roller"
+        tools:layout="@layout/fragment_dice_roller" />
+</navigation>
