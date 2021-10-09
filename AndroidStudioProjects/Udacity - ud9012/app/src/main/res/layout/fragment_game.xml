@@ -5,19 +5,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MiniAppFragment">
+    tools:context=".navigation.GameFragmentFragment">
+
 
     <Button
-        android:id="@+id/dice_roller_btn"
+        android:id="@+id/won_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/dice_roller" />
+        android:text="@string/won" />
 
     <Button
-        android:id="@+id/trivia_btn"
+        android:id="@+id/lost_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/trivia_app" />
+        android:text="@string/lost" />
 </LinearLayout>

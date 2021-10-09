@@ -13,10 +13,47 @@
         <action
             android:id="@+id/action_miniAppFragment_to_diceRollerFragment"
             app:destination="@id/diceRollerFragment" />
+        <action
+            android:id="@+id/action_miniAppFragment_to_gameFragmentFragment"
+            app:destination="@id/gameFragmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/diceRollerFragment"
         android:name="com.betatech.ud9012.diceroller.DiceRollerFragment"
         android:label="fragment_dice_roller"
         tools:layout="@layout/fragment_dice_roller" />
+    <fragment
+        android:id="@+id/gameFragmentFragment"
+        android:name="com.betatech.ud9012.navigation.GameFragmentFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/action_gameFragmentFragment_to_gameWonFragment"
+            app:destination="@id/gameWonFragment" />
+        <action
+            android:id="@+id/action_gameFragmentFragment_to_gameOverFragment"
+            app:destination="@id/gameOverFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameWonFragment"
+        android:name="com.betatech.ud9012.navigation.GameWonFragment"
+        android:label="fragment_game_won"
+        tools:layout="@layout/fragment_game_won" >
+        <action
+            android:id="@+id/action_gameWonFragment_to_miniAppFragment"
+            app:destination="@id/miniAppFragment"
+            app:popUpTo="@id/gameFragmentFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameOverFragment"
+        android:name="com.betatech.ud9012.navigation.GameOverFragment"
+        android:label="fragment_game_over"
+        tools:layout="@layout/fragment_game_over" >
+        <action
+            android:id="@+id/action_gameOverFragment_to_gameFragmentFragment"
+            app:destination="@id/gameFragmentFragment"
+            app:popUpTo="@id/gameOverFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

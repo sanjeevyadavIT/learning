@@ -4,4 +4,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dice_roller">Dice Roller</string>
+    <string name="won">Won</string>
+    <string name="lost">Lost</string>
+    <string name="try_again">Try again</string>
+    <string name="home">Home</string>
+    <string name="trivia_app">Trivia App</string>
 </resources>

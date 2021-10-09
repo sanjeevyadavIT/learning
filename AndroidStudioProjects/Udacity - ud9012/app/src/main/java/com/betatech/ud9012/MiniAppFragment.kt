@@ -31,6 +31,7 @@ class MiniAppFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.diceRollerBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_miniAppFragment_to_diceRollerFragment))
+        binding.triviaBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_miniAppFragment_to_gameFragmentFragment))
     }
 
     companion object {
