@@ -23,3 +23,4 @@ rootProject.name = "Android Basics With Compose"
 include(":app")
 include(":learntogether")
 include(":composequadrant")
+include(":tipcalculator")
