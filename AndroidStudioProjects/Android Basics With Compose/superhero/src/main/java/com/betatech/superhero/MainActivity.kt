@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -42,8 +43,8 @@ class MainActivity : ComponentActivity() {
                     HeroList(
                         HeroesRepository.heroes,
                         modifier = Modifier
-                            .padding(innerPadding)
-                            .fillMaxSize()
+                            .fillMaxSize(),
+                        contentPadding = innerPadding
                     )
                 }
             }
@@ -52,10 +53,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun HeroList(data: List<Hero>, modifier: Modifier = Modifier) {
-    LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = modifier) {
+fun HeroList(data: List<Hero>, contentPadding: PaddingValues = PaddingValues(0.dp), modifier: Modifier = Modifier) {
+    LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp), modifier = modifier, contentPadding = contentPadding) {
         items(data) {
-            SuperHeroItem(item = it, modifier = Modifier.fillMaxWidth())
+            SuperHeroItem(item = it, modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp ))
         }
     }
 }
