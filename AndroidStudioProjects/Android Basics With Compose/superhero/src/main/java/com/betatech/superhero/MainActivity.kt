@@ -1,6 +1,8 @@
 package com.betatech.superhero
 
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -28,9 +30,15 @@ import com.betatech.superhero.model.HeroesRepository
 import com.betatech.superhero.ui.components.SuperHeroItem
 import com.betatech.superhero.ui.theme.SuperheroesTheme
 
+
+private const val TAG = "SANJEEV"
+
 class MainActivity : ComponentActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate()")
         enableEdgeToEdge()
         setContent {
             SuperheroesTheme {
@@ -49,6 +57,41 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart()")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume()")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause()")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop()")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy()")
+    }
+
+    override fun onPostResume() {
+        super.onPostResume()
+        Log.d(TAG, "onPostResume()")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "onRestart()")
     }
 }
 
