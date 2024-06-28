@@ -15,48 +15,9 @@ import com.betatech.mycityapp.ui.utils.NavigationItemContent
 
 @Composable
 fun MyCityHomeScreen(
-    navigationType: MyCityNavigationType,
-    navigationItems: List<NavigationItemContent>,
-    selectedTab: MutableState<NavigationItemContent>,
-    onTabPressed: (obj: NavigationItemContent) -> Unit,
     modifier: Modifier
 ) {
-    if (navigationType == MyCityNavigationType.PERMANENT_NAVIGATION_DRAWER) {
-        PermanentNavigationDrawer(drawerContent = {
-            PermanentDrawerSheet(modifier = Modifier.width(240.dp)) {
-                navigationItems.forEach {
-                    NavigationDrawerItem(
-                        label = {
-                            Text(text = it.text)
-                        },
-                        selected = it == selectedTab.value,
-                        icon = {
-                            Icon(imageVector = it.icon, contentDescription = null)
-                        },
-                        onClick = {
-                            onTabPressed(it)
-                        })
-                }
-            }
-        }) {
-            CategoryListScreen(
-                navigationType = navigationType,
-                navigationItems = navigationItems,
-                selectedTab = selectedTab,
-                onTabPressed = { item ->
-                    selectedTab.value = item
-                },
-            )
-        }
-    } else {
-        CategoryListScreen(
-            navigationType = navigationType,
-            navigationItems = navigationItems,
-            selectedTab = selectedTab,
-            onTabPressed = { item ->
-                selectedTab.value = item
-            },
-        )
-    }
+    // TODO: Show either list View or List+Detail view in expanded state
+    CategoryListScreen()
 }
 
