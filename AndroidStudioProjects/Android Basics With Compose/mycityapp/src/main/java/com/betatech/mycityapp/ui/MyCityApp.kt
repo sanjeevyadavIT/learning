@@ -17,9 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.betatech.mycityapp.navigation.HomeLevelDestination
 import com.betatech.mycityapp.navigation.TopLevelDestination
 import com.betatech.mycityapp.navigation.NavigationSuiteItem
@@ -79,16 +81,34 @@ fun MyCityApp(
                             startDestination = HomeLevelDestination.HomeScreen.route
                         ) {
                             composable(HomeLevelDestination.HomeScreen.route) {
-                                MyCityHomeScreen(
+                                var categorySelected by rememberSaveable {
+                                    mutableStateOf(0)
+                                }
+                                MyCityCategoryListScreen(
+                                    windowSize,
                                     categoryList = uiState.categories,
+                                    selectedCategoryId = categorySelected,
                                     onCategoryClicked = {
-                                        homeNavController.navigate(HomeLevelDestination.DetailScreen.route)
+                                        if(windowSize == WindowWidthSizeClass.Expanded) {
+                                            categorySelected = it.id
+                                        } else {
+                                            homeNavController.navigate(
+                                                HomeLevelDestination.DetailScreen.route.replace(
+                                                    "{id}",
+                                                    it.id.toString()
+                                                )
+                                            )
+                                        }
+
                                     }
                                 )
                             }
 
-                            composable(HomeLevelDestination.DetailScreen.route) {
-                                MyCityDetailScreen()
+                            composable(
+                                route = HomeLevelDestination.DetailScreen.route,
+                                arguments = listOf(navArgument("id") { type = NavType.IntType })
+                            ) {
+                                MyCityDetailScreen(it.arguments?.getInt("id") ?: 0)
                             }
                         }
                     }
