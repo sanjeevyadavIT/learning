@@ -57,7 +57,7 @@ fun MyCityApp(
                 icon = {
                     Icon(
                         imageVector = it.icon,
-                        contentDescription = null
+                        contentDescription = stringResource(id = it.text)
                     )
                 }
             )
