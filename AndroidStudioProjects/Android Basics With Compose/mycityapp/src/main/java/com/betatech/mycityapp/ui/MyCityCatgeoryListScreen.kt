@@ -24,7 +24,8 @@ fun MyCityCategoryListScreen(
                 onClick = {
                     onCategoryClicked(it)
                 }
-            ) },
+            )
+        },
         detailPane = {
             DetailCategory(
                 categoryID = selectedCategoryId
