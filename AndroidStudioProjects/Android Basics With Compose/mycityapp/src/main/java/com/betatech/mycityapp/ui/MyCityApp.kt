@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -34,10 +35,9 @@ import com.betatech.mycityapp.ui.theme.AndroidBasicsWithComposeTheme
 @Composable
 fun MyCityApp(
     windowSize: WindowWidthSizeClass,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController()
 ) {
-
-    val navController = rememberNavController()
     val viewModel: MyCityViewModel = viewModel()
     val uiState = viewModel.uiState.collectAsState().value
     var currentDestination by rememberSaveable { mutableStateOf(TopLevelDestination.HOME) }
