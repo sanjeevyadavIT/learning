@@ -51,6 +51,16 @@ android {
 
 dependencies {
 
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    // kotlinx.serialization to convert json to class
+    implementation("com.squareup.retrofit2:converter-gson:2.5.0")
+
+
+    // viewmodel compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
