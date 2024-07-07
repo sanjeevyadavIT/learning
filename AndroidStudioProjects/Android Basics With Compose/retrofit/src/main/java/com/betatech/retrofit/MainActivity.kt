@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.betatech.retrofit.ui.RetrofitApp
+import com.betatech.retrofit.ui.MarsApp
 import com.betatech.retrofit.ui.theme.AndroidBasicsWithComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidBasicsWithComposeTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    RetrofitApp(
+                    MarsApp(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }

@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun RetrofitApp(modifier: Modifier = Modifier) {
-    val viewModel: RetrofitViewModel = viewModel<RetrofitViewModel>()
+fun MarsApp(modifier: Modifier = Modifier) {
+    val viewModel: MarsViewModel = viewModel<MarsViewModel>(factory = MarsViewModel.Factory)
 
     LaunchedEffect(key1 = "1") {
         viewModel.getPhotos()
