@@ -56,6 +56,8 @@ dependencies {
     // kotlinx.serialization to convert json to class
     implementation("com.squareup.retrofit2:converter-gson:2.5.0")
 
+    // Coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
 
     // viewmodel compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
