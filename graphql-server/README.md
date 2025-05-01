@@ -1,0 +1,1 @@
+Use @apollo/server to spin a graphql server which supports queries/mutations
